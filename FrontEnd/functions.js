@@ -15,49 +15,48 @@
   }
   function editTask(input) {
   		    var txt;
-              var newTask = prompt("Please make the change",input);
-              if (newTask != null && newTask != "") {
+            var newTask = prompt("Please make the change",input);
+            if (newTask != null && newTask != "") {
                     let url = 'http://localhost:9090/todos/' + input+'/'+newTask;
                     fetch(url, {
-                    method: 'put'
+                        method: 'put'
                     }).then(response => {
                     	return response.json()
                     }).then(data => {
-                        console.log(data.todos);
                     	makeSearch(1,data.todos);
                     });
-  }
+            }
   }
   function addTask() {
-                var input = document.getElementById("mySearch").value;
-                if(input == "")
-                        alert("Enter a value to add");
-                else{
-                		let requestBody = { todoname : input };
-                		fetch('http://localhost:9090/todos/', {
-                		 	method: 'post',
-                		    body: JSON.stringify(requestBody)
-                		}).then(response => {
-                		console.log(response)
-                	    	return response.json()
-                		}).then(data => {
-                			makeSearch(1,data.todos);
-                		});
-                }
+            var input = document.getElementById("mySearch").value;
+            if(input == "")
+                     alert("Enter a value to add");
+            else
+            {
+                	 let requestBody = { todoname : input };
+                	 fetch('http://localhost:9090/todos/', {
+                		method: 'post',
+                		body: JSON.stringify(requestBody)
+                     }).then(response => {
+                        return response.json()
+                	 }).then(data => {
+                		makeSearch(1,data.todos);
+                	 });
+            }
   }
   function deleteTask(input) {
-              fetch('http://localhost:9090/todos/'+input, {
+            fetch('http://localhost:9090/todos/'+input, {
                         method: 'delete'
-              }).then(response => {
-                         return response.json()
-              }).then(data => {
-                         makeSearch(1,data.todos);
-              });
+            }).then(response => {
+                        return response.json()
+            }).then(data => {
+                        makeSearch(1,data.todos);
+            });
   }
   function makeSearch(value,array) {
             if(value==0){
-            var buttonscript='<ul id="myMenu"><input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search..">';
-            fetch('http://localhost:9090/todos/', {
+                var buttonscript='<ul id="myMenu"><input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search..">';
+                fetch('http://localhost:9090/todos/', {
             		method: 'get'
             	}).then(response => {
                 	return response.json();
