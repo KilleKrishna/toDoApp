@@ -26,12 +26,21 @@ public class ControllersToDo {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> getById(@PathVariable("id") int todoid) throws JSONException {
-        return todoService.getTodoById(todoid);
+        return servicesToDo.getTodoById(todoid);
     }
 
     @PostMapping(path = "")
     public ResponseEntity<?> add(@RequestBody String json) throws JSONException {
-        return todoService.addTodo(json);
+        return servicesToDo.addTodo(json);
     }
 
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<?> update(@PathVariable("id") int todoid, @RequestBody String json) throws JSONException {
+        return servicesToDo.updateTodo(todoid, json);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<?> deleteTodo(@PathVariable("id") int todoid) throws JSONException {
+        return servicesToDo.deleteTodo(todoid);
+    }
 }
