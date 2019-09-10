@@ -37,13 +37,13 @@ public class ControllersToDo {
         return servicesToDo.addTodo(json);
     }
 
-    @PutMapping(path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") int todoid, @RequestBody String json) throws JSONException {
-        return servicesToDo.updateTodo(todoid, json);
+    @PutMapping(path = "/{oldname}/{newname}")
+    public ResponseEntity<?> update(@PathVariable("oldname") String oldname,@PathVariable("newname") String newname) throws JSONException {
+        return servicesToDo.updateTodo(oldname,newname);
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<?> deleteTodo(@PathVariable("id") int todoid) throws JSONException {
+    public ResponseEntity<?> deleteTodo(@PathVariable("id") String todoid) throws JSONException {
         return servicesToDo.deleteTodo(todoid);
     }
 }

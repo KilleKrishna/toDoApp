@@ -37,20 +37,31 @@ public class ServicesToDo {
         return sendResponse("Todo " + todoname + " Added");
     }
 
-    public ResponseEntity<?> updateTodo(int todoid, String json) throws JSONException {
-        JSONObject jsonObject = new JSONObject(json);
-        if (todoid >= todos.size())
-            return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
-        String todoname = jsonObject.getString("todoname");
-        todos.set(todoid, todoname);
-        return sendResponse("Todo-" + (todoid + 1) + " Updated");
+    public ResponseEntity<?> updateTodo(String name,String newname) throws JSONException {
+        int id=0;
+        for(int i=0;i<todos.size();i++)
+        {
+            if(todos.get(i).equals(name))
+            {
+                id=i;
+            }
+        }
+        todos.remove(id);
+        todos.add(newname);
+        return sendResponse("Todo-" + name + " Updated");
     }
 
-    public ResponseEntity<?> deleteTodo(int todoid) throws JSONException {
-        if (todoid >= todos.size())
-            return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
-        todos.remove(todoid);
-        return sendResponse("Todo-" + (todoid + 1) + " Deleted");
+    public ResponseEntity<?> deleteTodo(String name) throws JSONException {
+        int id=0;
+        for(int i=0;i<todos.size();i++)
+        {
+            if(todos.get(i).equals(name))
+            {
+                id=i;
+            }
+        }
+        todos.remove(id);
+        return sendResponse("Todo-" + name + " Deleted");
     }
 
     private ResponseEntity<?> sendResponse(String status) throws JSONException {
