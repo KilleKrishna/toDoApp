@@ -29,6 +29,9 @@ public class ControllersToDo {
         return todoService.getTodoById(todoid);
     }
 
-
+    @PostMapping(path = "")
+    public ResponseEntity<?> add(@RequestBody String json) throws JSONException {
+        return todoService.addTodo(json);
+    }
 
 }
