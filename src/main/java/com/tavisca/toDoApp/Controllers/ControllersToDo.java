@@ -1,9 +1,11 @@
-package Controllers;
+package com.tavisca.toDoApp.Controllers;
 
-import Services.ServicesToDo;
+import com.tavisca.toDoApp.Services.ServicesToDo;
+import org.graalvm.compiler.lir.CompositeValue;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/todos")
+
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 
 public class ControllersToDo {

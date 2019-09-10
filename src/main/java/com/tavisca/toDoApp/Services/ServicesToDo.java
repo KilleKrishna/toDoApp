@@ -1,14 +1,16 @@
-package Services;
+package com.tavisca.toDoApp.Services;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ServicesToDo {
     private List<String> todos = new ArrayList<>();
 
