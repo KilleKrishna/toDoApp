@@ -15,5 +15,6 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compile group: 'org.json', name: 'json', version: '20180813'
-}
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compile group: 'org.json', name: 'json', version: '20180813'}
