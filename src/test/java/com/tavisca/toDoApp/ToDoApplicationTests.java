@@ -32,6 +32,12 @@ public class ToDoApplicationTests {
         Assert.assertTrue(responseEntity.getBody().toString().contains("thirdTodo"));
     }
     @Test
+    public void testSingleAddTodo() {
+        ServicesToDo todoService = new ServicesToDo();
+        ResponseEntity responseEntity =  todoService.addTodo("{ \"todoname\" : \"firstTodo\" }");
+        Assert.assertTrue(responseEntity.getBody().toString().contains("[\"firstTodo\"]"));
+    }
+    @Test
     public void testMultipleAddTodo() {
         ServicesToDo todoService = new ServicesToDo();
         todoService.addTodo("{ \"todoname\" : \"firstTodo\" }");
