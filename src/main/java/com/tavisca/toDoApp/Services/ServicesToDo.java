@@ -47,7 +47,8 @@ public class ServicesToDo {
                 id=i;
             }
         }
-        todos.remove(id);
+        if(id<todos.size())
+            todos.remove(id);
         return sendResponse("Todo-" + name + " Deleted");
     }
 
