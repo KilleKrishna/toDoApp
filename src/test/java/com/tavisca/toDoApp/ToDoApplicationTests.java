@@ -21,7 +21,7 @@ public class ToDoApplicationTests {
 		});
 	}
     @Test
-    public void testUpdateTodoById() {
+    public void testUpdateTodo() {
         ServicesToDo todoService = new ServicesToDo();
         todoService.addTodo("{ \"todoname\" : \"firstTodo\" }");
         todoService.addTodo("{ \"todoname\" : \"secondTodo\" }");
@@ -30,6 +30,15 @@ public class ToDoApplicationTests {
         Assert.assertTrue(responseEntity.getBody().toString().contains("firstTodo"));
         Assert.assertTrue(responseEntity.getBody().toString().contains("updatedToDo"));
         Assert.assertTrue(responseEntity.getBody().toString().contains("thirdTodo"));
+    }
+    @Test
+    public void testMultipleAddTodo() {
+        ServicesToDo todoService = new ServicesToDo();
+        todoService.addTodo("{ \"todoname\" : \"firstTodo\" }");
+        todoService.addTodo("{ \"todoname\" : \"secondTodo\" }");
+        todoService.addTodo("{ \"todoname\" : \"thirdTodo\" }");
+        ResponseEntity responseEntity = todoService.addTodo("{ \"todoname\" : \"fourthTodo\" }");
+        Assert.assertTrue(responseEntity.getBody().toString().contains("[\"firstTodo\",\"secondTodo\",\"thirdTodo\",\"fourthTodo\"]"));
     }
     @Test
     public void testToDelete()
