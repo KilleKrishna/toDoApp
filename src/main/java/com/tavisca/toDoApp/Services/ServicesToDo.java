@@ -17,19 +17,6 @@ public class ServicesToDo {
     public ResponseEntity<?> getTodos() throws JSONException {
         return sendResponse("All Todos returned");
     }
-
-    public ResponseEntity<?> getTodoById(int todoid) throws JSONException {
-        if(todoid==0)
-            return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
-        if (todoid >= todos.size()+1)
-            return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
-        JSONObject jsonResponse = new JSONObject()
-                .put("todoname", todos.get(todoid-1))
-                .put("status", "Todo " + (todoid ) + " retrieved")
-                .put("timestamp", Instant.now().toString());
-        return new ResponseEntity<>(jsonResponse.toString(), HttpStatus.OK);
-    }
-
     public ResponseEntity<?> addTodo(String json) throws JSONException {
         JSONObject obj = new JSONObject(json);
         String todoname = obj.getString("todoname");

@@ -27,11 +27,6 @@ public class ControllersToDo {
         return servicesToDo.getTodos();
     }
 
-    @GetMapping(path = "/{id}")
-    public ResponseEntity<?> getById(@PathVariable("id") int todoid) throws JSONException {
-        return servicesToDo.getTodoById(todoid);
-    }
-
     @PostMapping(path = "")
     public ResponseEntity<?> add(@RequestBody String json) throws JSONException {
         return servicesToDo.addTodo(json);
