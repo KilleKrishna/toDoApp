@@ -21,7 +21,6 @@ public class ControllersToDo {
     ServicesToDo servicesToDo;
     private List<String> todos = new ArrayList<>();
 
-
     @GetMapping(path = "")
     public ResponseEntity<?> get() throws JSONException {
         return servicesToDo.getTodos();
