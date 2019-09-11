@@ -56,7 +56,7 @@ public class ToDoApplicationTests {
         Assert.assertTrue(responseEntity.getBody().toString().contains("[\"firstTodo\",\"secondTodo\",\"thirdTodo\",\"fourthTodo\"]"));
     }
     @Test
-    public void testToDelete()
+    public void testToSingleDelete()
     {
         ServicesToDo todoService = new ServicesToDo();
         todoService.addTodo("{ \"todoname\" : \"firstTodo\" }");
@@ -64,5 +64,19 @@ public class ToDoApplicationTests {
         todoService.addTodo("{ \"todoname\" : \"thirdTodo\" }");
         ResponseEntity responseEntity = todoService.deleteTodo("secondTodo");
         Assert.assertTrue(responseEntity.getBody().toString().contains("Todo-secondTodo Deleted"));
+    }
+    @Test
+    public void testToMultipleDelete()
+    {
+        ServicesToDo todoService = new ServicesToDo();
+        todoService.addTodo("{ \"todoname\" : \"firstTodo\" }");
+        todoService.addTodo("{ \"todoname\" : \"secondTodo\" }");
+        todoService.addTodo("{ \"todoname\" : \"thirdTodo\" }");
+        ResponseEntity responseEntity = todoService.deleteTodo("secondTodo");
+        Assert.assertTrue(responseEntity.getBody().toString().contains("Todo-secondTodo Deleted"));
+        responseEntity = todoService.deleteTodo("firstTodo");
+        Assert.assertTrue(responseEntity.getBody().toString().contains("Todo-firstTodo Deleted"));
+        responseEntity = todoService.deleteTodo("thirdTodo");
+        Assert.assertTrue(responseEntity.getBody().toString().contains("Todo-thirdTodo Deleted"));
     }
 }
